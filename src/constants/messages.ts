@@ -1,0 +1,1 @@
+export const REQUIRE_FIELD = '必須項目です。'
