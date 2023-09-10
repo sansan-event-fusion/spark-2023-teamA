@@ -3,7 +3,7 @@ import { Heading } from ".";
 
 
 const meta = {
-  title: 'atoms/Heading',
+  title: 'atoms/Heading/user',
   component:  Heading,
 }
 

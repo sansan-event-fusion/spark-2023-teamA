@@ -42,7 +42,7 @@ export const PlainInput = ({
   labelClassName,
   inputClassName
 }: Props): JSX.Element => (
-  <div className="flex flex-col gap-1 m-2 w-full">
+  <div className="flex flex-col gap-1 w-full">
     <label htmlFor={registerValue} className={labelClassName} >
       {label}
     </label>
