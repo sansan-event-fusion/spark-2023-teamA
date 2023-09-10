@@ -11,6 +11,6 @@ export default meta;
 
 type Story = StoryObj<typeof Heading>;
 
-export const Error: Story = {
+export const PlainHeading: Story = {
   render: () => <Heading />
 }

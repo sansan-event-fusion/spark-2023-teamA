@@ -13,6 +13,9 @@ const config: Config = {
         'error-color': '#ff0000',
         'pink-color': '#C93E71'
       },
+      fontFamily: {
+        "m-plus": ['"M PLUS Rounded 1c"', "sans-serif"]
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

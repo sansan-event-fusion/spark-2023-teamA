@@ -10,11 +10,11 @@ export default meta;
 
 type Story = StoryObj<typeof PlainButton>;
 
-export const typeButton: Story = {
+export const TypeButton: Story = {
   render: () => <PlainButton type="button" innerText="戻る" />
 }
 
-export const typeSubmit: Story = {
+export const TypeSubmit: Story = {
   render: () => <PlainButton type="submit" innerText="送信する" />
 }
 
