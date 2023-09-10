@@ -22,5 +22,15 @@ export const Routing: RoutingType = {
       }
     },
     pathName: 'rentalHouseの一覧'
-  }
+  },
+  rentalHousesByHouseName: {
+    buildRoute: ({ houseName }) => {
+      return {
+        id: 'rentalHousesByHouseName',
+        path: `${rentalHouse}?houseName=${houseName}`
+      }
+    },
+    pathName: 'rentalHouseをhotelNameで条件検索'
+  },
+
 }

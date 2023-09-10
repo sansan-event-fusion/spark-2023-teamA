@@ -17,4 +17,5 @@ type RoutingWithNoParams = {
 export type RoutingType = {
   room: RoutingWithParams<{ roomId: number }>;
   rentalHouses: RoutingWithNoParams;
+  rentalHousesByHouseName: RoutingWithParams<{ houseName: string }>;
 }

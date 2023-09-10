@@ -1,4 +1,5 @@
 import { SearchBox } from "@/components/molecules/Search"
+import { Routing } from "@/hooks/routing";
 import { useRouter } from "next/router"
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
@@ -16,17 +17,12 @@ export const RentalHouseSearchBox = (): JSX.Element => {
   const handleFiltered = useCallback((houseName?: string) => {
     switch (true) {
       case !!houseName:
-        router.push({
-          pathname: '/rentalHouse' ,
-          query: {
-            hotelName: houseName
-          }
-        });
+        houseName && router.push(Routing.rentalHousesByHouseName.buildRoute({houseName}).path);
         break;
       case (!houseName):
-        router.push('/rentalHouse');
+        router.push(Routing.rentalHouses.buildRoute().path);
       default:
-        router.push('/rentalHouse');
+        router.push(Routing.rentalHouses.buildRoute().path);
     }
   }, [router])
 

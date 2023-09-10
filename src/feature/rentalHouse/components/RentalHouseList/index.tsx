@@ -12,8 +12,8 @@ export const RentalHouseList = ({ rentalHouses }: Props): JSX.Element => {
 
   // queryの値と部分一致
   const filteredHouses = rentalHouses.filter((house) => {
-     if (query.hotelName) {
-      return house.name.includes(query.hotelName as string);
+     if (query.houseName) {
+      return house.name.includes(query.houseName as string);
      } else {
       return rentalHouses
      }
