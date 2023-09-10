@@ -1,5 +1,15 @@
 import type { Preview } from "@storybook/react";
 import '../src/styles/globals.css';
+import Image from 'next/image';
+
+//.jpgもstorybookで表示できるようにする。
+Image.propTypes = {
+  unoptimized: undefined,
+};
+    
+Image.defaultProps = {
+  unoptimized: true,
+};
 
 export const parameters = {
    actions: { argTypesRegex: "^on[A-Z].*" },
@@ -21,4 +31,5 @@ const preview: Preview = {
     },
   },
 };
+
 export default preview;
