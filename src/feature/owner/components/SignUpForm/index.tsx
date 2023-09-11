@@ -19,7 +19,6 @@ export const SignUpForm = () => {
   const { setOwner, owner } = useCertainOwner();
 
   const onSubmit = (createData: any): void => {
-     console.log('kakunin',createData)
     authRepository.signUp(createData)
       .then(({ data, style, message }: ToastResult) => {
         console.log(data, style, message)
@@ -32,10 +31,7 @@ export const SignUpForm = () => {
           }
         }, 3000)
       })
-    console.log('提出完了')
   };
-
-  // console.log('確認', owner)
   
   return (
     <form className="flex flex-col w-md space-y-2" onSubmit={handleSubmit(onSubmit)}>
