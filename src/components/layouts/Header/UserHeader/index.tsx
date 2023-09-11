@@ -1,4 +1,4 @@
-import { Heading } from "@/components/atoms/Heading"
+import { Heading } from "@/components/atoms/Heading/user"
 
 export const UserHeader = (): JSX.Element => {
 
