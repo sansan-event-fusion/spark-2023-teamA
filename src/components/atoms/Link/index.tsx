@@ -7,4 +7,4 @@ export type Props = {
 }
 
 export const PlainLink = ({ path, innerText, className }: Props): JSX.Element => 
-    <Link href={path} className={`flex items-center bg-pink-color text-center py-3 px-6 rounded-xl text-white ${className}`}>{innerText}</Link>
+    <Link href={path} className={`flex items-center justify-center bg-pink-color py-3 px-6 rounded-xl text-white w-full ${className}`}>{innerText}</Link>

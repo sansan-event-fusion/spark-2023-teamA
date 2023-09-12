@@ -8,6 +8,7 @@ export const rentalHousePath = '/rentalHouse';
 export const baseAdminPath = '/admin'
 export const adminOwnerPath = `${baseAdminPath}/owner`
 export const adminRentalHousePath = `${baseAdminPath}${rentalHousePath}`
+export const adminRoomPath = `${baseAdminPath}${roomPath}`
 
 // pathをここに追加していく。　
 export const Routing: RoutingType = {
@@ -76,5 +77,24 @@ export const Routing: RoutingType = {
       }
     },
     pathName: 'ownerのhouseの作成'
+  },
+  adminRoomsBelongToHouse: {
+    buildRoute: ({ houseId }) => {
+      return {
+        id: 'adminRoomsBelongToHouse',
+        path:  `${adminRoomPath}/${houseId}`
+      }
+    },
+    pathName: 'houseに紐ずくroomリスト'
+  },
+  adminAddRoomBelongToHouse: {
+    buildRoute: ({ houseId }) => {
+      return {
+        id: 'adminAddRoomBelongToHouse',
+        path: `${adminRoomPath}/${houseId}/addRoom`
+      }
+    },
+    pathName: 'houseに紐ずくroom作成'
   }
+
 }

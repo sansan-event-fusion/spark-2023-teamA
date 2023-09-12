@@ -29,4 +29,7 @@ export type RoutingType = {
   //rentalHouse
   adminRentalHouses: RoutingWithNoParams;
   addRentalHouse: RoutingWithNoParams;
+  //room
+  adminRoomsBelongToHouse: RoutingWithParams<{ houseId: number }>;
+  adminAddRoomBelongToHouse: RoutingWithParams<{ houseId: number }>;
 }

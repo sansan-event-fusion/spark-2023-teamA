@@ -42,8 +42,9 @@ export const RentalHouseCardWithOutRoomCard: Story = {
   args: {
     ...baseRentalCardArgs
   },
-  render: ({ houseName, img, address }) => (
+  render: ({ houseName, img, address, id }) => (
     <RentalHouseCard 
+      id={id}
       houseName={houseName}
       img={img}
       address={address}
@@ -57,8 +58,9 @@ export const RentalHotelCardWithRoomCard: Story = {
     ...baseRentalCardArgs,
     rooms: room
   },
-  render: ({ houseName, img, address, rooms }) => (
+  render: ({ houseName, img, address, rooms, id }) => (
     <RentalHouseCard
+      id={id}
       houseName={houseName}
       img={img}
       address={address}

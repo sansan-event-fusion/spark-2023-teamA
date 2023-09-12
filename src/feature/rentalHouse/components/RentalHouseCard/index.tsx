@@ -1,17 +1,19 @@
 import { OneRoomCard } from "@/feature/room/share/OneRoomCard";
 import { MansionRoom } from "@/feature/room/type/room";
+import { Routing } from "@/hooks/routing";
 import { useCertainOwner } from "@/hooks/useCertainOwner";
 import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
+  id: number;
   houseName: string;
   img: string;
   address: string;
   rooms?: MansionRoom[];
 }
 
-export const RentalHouseCard = ({ houseName, img, address, rooms }: Props): JSX.Element => {
+export const RentalHouseCard = ({ id, houseName, img, address, rooms }: Props): JSX.Element => {
   const { owner } = useCertainOwner();
   //1番安い家賃を取得する。
   const minRent = rooms && Math.min(...rooms.map(room => room.rent));
@@ -44,7 +46,7 @@ export const RentalHouseCard = ({ houseName, img, address, rooms }: Props): JSX.
 
       {/* ownerはrentalHouseに紐ずくroom一覧に飛ぶ(Ownerでのみ表示) */}
       { owner && 
-        <Link href={''} className="bg-pink-color py-3 px-6 rounded-xl text-white">募集中のRoom一覧</Link>
+        <Link href={Routing.adminRoomsBelongToHouse.buildRoute({ houseId: id }).path} className="bg-pink-color py-3 px-6 rounded-xl text-white">募集中のRoom一覧</Link>
       }
     </section>
   );

@@ -1,5 +1,5 @@
 import { AdminLayout } from "@/components/layouts/Layout/AdminLayout";
-import { AddRentalHouse } from "@/feature/rentalHouse/page/AddRentalHouse.tsx";
+import { AddRentalHouse } from "@/feature/rentalHouse/page/AdminAddRentalHouse.tsx";
 import { ReactElement } from "react";
 
 const AddRentalHousePage = (): JSX.Element => <AddRentalHouse />;

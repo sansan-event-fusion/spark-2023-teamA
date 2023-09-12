@@ -13,6 +13,8 @@ export const BookingFooter = ({stayFee}: Props): JSX.Element => (
       <ErrorText errorText="*契約しなかった場合のみ" />
     </div>
     {/* MVP: GoogleFormに飛ばす(固定値) */}
-    <PlainLink innerText="予約する" path='https://calendar.app.google/Zce3gPC5gnkPsdYQA' />
+    <div className="w-40">
+      <PlainLink innerText="予約する" path='https://calendar.app.google/Zce3gPC5gnkPsdYQA' />
+    </div>
   </div>
 )
