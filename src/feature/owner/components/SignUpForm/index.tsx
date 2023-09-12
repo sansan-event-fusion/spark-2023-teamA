@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useCertainOwner } from "@/hooks/useCertainOwner";
 import { signUpInputSchema } from "../../type/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Routing } from "@/hooks/routing";
 
 export const SignUpForm = () => {
   const router = useRouter();
@@ -16,7 +17,7 @@ export const SignUpForm = () => {
   });
 
   const { showToast, hideToast } = useToast();
-  const { setOwner, owner } = useCertainOwner();
+  const { setOwner } = useCertainOwner();
 
   const onSubmit = (createData: any): void => {
     authRepository.signUp(createData)
@@ -27,7 +28,7 @@ export const SignUpForm = () => {
           hideToast();
           if (style === 'success') {
             setOwner(data);
-            // return router.push("/")
+            return router.push(Routing.adminRentalHouses.buildRoute().path)
           }
         }, 3000)
       })
@@ -40,7 +41,6 @@ export const SignUpForm = () => {
         label="メールアドレス"
         register={register}
         registerValue="email"
-        id="email"
         inputType="email"
         error={errors.email?.message as string}
       />
@@ -49,7 +49,6 @@ export const SignUpForm = () => {
         {...register('password')}
         register={register}
         registerValue="password"
-        id="password"
         inputType="password"
         error={errors.password?.message as string}
       />
@@ -57,7 +56,6 @@ export const SignUpForm = () => {
         <div className="w-1/2">
           <PlainInput
             register={register}
-            id="last_name"
             label="苗字"
             registerValue="last_name"
             inputType="text"
@@ -66,7 +64,6 @@ export const SignUpForm = () => {
         </div>
         <div className="w-1/2">
           <PlainInput
-            id="first_name"
             register={register}
             label="名前"
             registerValue="first_name"
@@ -79,7 +76,6 @@ export const SignUpForm = () => {
         label="電話番号"
         register={register}
         registerValue="phone_number"
-        id="phone_number"
         inputType="tel"
         error={errors?.phone_number?.message as string}
       />

@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { MansionRoom } from "../../type.ts/room"
+import { MansionRoom } from "../../type/room"
 
 type Props = {
   room: MansionRoom

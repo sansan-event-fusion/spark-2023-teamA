@@ -1,5 +1,6 @@
 import { PlainButton } from "@/components/atoms/Button";
 import { ErrorText } from "@/components/atoms/ErrorText";
+import { PlainLink } from "@/components/atoms/Link";
 
 type Props = {
   stayFee: number
@@ -11,7 +12,7 @@ export const BookingFooter = ({stayFee}: Props): JSX.Element => (
       <p className="font-semibold">¥{stayFee}</p>
       <ErrorText errorText="*契約しなかった場合のみ" />
     </div>
-    {/* MVP: GoogleFormに飛ばす */}
-    <PlainButton innerText="予約する" type="button"/>
+    {/* MVP: GoogleFormに飛ばす(固定値) */}
+    <PlainLink innerText="予約する" path='https://calendar.app.google/Zce3gPC5gnkPsdYQA' />
   </div>
 )

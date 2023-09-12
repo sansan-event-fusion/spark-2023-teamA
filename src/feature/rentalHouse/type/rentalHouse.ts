@@ -1,4 +1,4 @@
-import { MansionRoom } from "@/feature/room/type.ts/room";
+import { MansionRoom } from "@/feature/room/type/room";
 import { Photo } from "@/type/photo";
 
 
@@ -7,8 +7,8 @@ export type RentalHouse = {
   name: string;
   address: string;
   nearestStation: string;
-  maxFloorNumber: string;
-  buildingAge: number;
+  maxFloorNumber: number | string;
+  buildingAge: number | string;
   rentalHousePhoto: Photo;
   mansionRoom?: MansionRoom[];
   // apartmentRoom?: ApartmentRoom[];

@@ -1,4 +1,4 @@
-import { MansionRoomWithRentalHouse } from "../../type.ts/room"
+import { MansionRoomWithRentalHouse } from "../../type/room"
 import { RentalHouseInfo } from "@/feature/rentalHouse/share/RentalHouseInfo"
 import { RoomInfo } from "../../components/RoomInfo"
 import { BookingFooter } from "../../components/BookingFooter"

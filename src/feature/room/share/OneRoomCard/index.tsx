@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MansionRoom } from "../../type.ts/room"
+import { MansionRoom } from "../../type/room"
 import { ErrorText } from "@/components/atoms/ErrorText";
 import Link from "next/link";
 import { Routing } from "@/hooks/routing";

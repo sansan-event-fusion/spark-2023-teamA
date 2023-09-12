@@ -25,5 +25,8 @@ export type RoutingType = {
   //admin
   //owner
   ownerSignUp: RoutingWithNoParams;
-  ownerSignIn: RoutingWithNoParams
+  ownerSignIn: RoutingWithNoParams;
+  //rentalHouse
+  adminRentalHouses: RoutingWithNoParams;
+  addRentalHouse: RoutingWithNoParams;
 }

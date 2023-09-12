@@ -7,8 +7,11 @@ import { useToast } from "@/hooks/useToast";
 import { useCertainOwner } from "@/hooks/useCertainOwner";
 import { authRepository } from "../../modules/auth/auth.repository";
 import { ToastResult } from "@/type/toast";
+import { Routing } from "@/hooks/routing";
+import { useRouter } from "next/router";
 
 export const SignInForm = (): JSX.Element => {
+  const router = useRouter();
   const { handleSubmit, register, formState: {errors}} = useForm({
     resolver: zodResolver(signInInputSchema)
   });
@@ -25,8 +28,7 @@ export const SignInForm = (): JSX.Element => {
           hideToast();
           if (style === 'success') {
             setOwner(data);
-            // TODO: メインページに飛ばす。
-            // return router.push("/")
+            return router.push(Routing.adminRentalHouses.buildRoute().path)
           }
         }, 3000)
       });
@@ -39,7 +41,6 @@ export const SignInForm = (): JSX.Element => {
         label="メールアドレス"
         register={register}
         registerValue="email"
-        id="email"
         inputType="email"
         error={errors.email?.message as string}
       />
@@ -48,7 +49,6 @@ export const SignInForm = (): JSX.Element => {
         {...register('password')}
         register={register}
         registerValue="password"
-        id="password"
         inputType="password"
         error={errors.password?.message as string}
       />
