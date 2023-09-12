@@ -1,6 +1,6 @@
 import { StoryObj } from "@storybook/react";
 import { RentalHouseCard } from ".";
-import { BaseRoom } from "@/feature/room/type.ts/room";
+import { BaseRoom } from "@/feature/room/type/room";
 
 const meta = {
   title: 'feature/property/components/list/components/RentalHotelCard',

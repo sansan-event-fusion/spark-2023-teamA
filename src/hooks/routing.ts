@@ -1,12 +1,13 @@
 import { RoutingType } from "./type";
 
-// admin
-export const baseAdminPath = '/admin'
-export const adminOwnerPath = `${baseAdminPath}/owner`
-
 // user
 export const roomPath = '/room';
 export const rentalHousePath = '/rentalHouse';
+
+// admin
+export const baseAdminPath = '/admin'
+export const adminOwnerPath = `${baseAdminPath}/owner`
+export const adminRentalHousePath = `${baseAdminPath}${rentalHousePath}`
 
 // pathをここに追加していく。　
 export const Routing: RoutingType = {
@@ -57,4 +58,23 @@ export const Routing: RoutingType = {
     },
     pathName: 'ownerのサインイン'
   },
+
+  adminRentalHouses: {
+    buildRoute: () => {
+      return {
+        id: 'adminRentalHouses',
+        path: `${adminRentalHousePath}`
+      }
+    },
+    pathName: 'ownerに所属するhouseの一覧'
+  },
+  addRentalHouse: {
+    buildRoute: () => {
+      return {
+        id: 'addRentalHouse',
+        path: `${adminRentalHousePath}/addRentalHouse`
+      }
+    },
+    pathName: 'ownerのhouseの作成'
+  }
 }

@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { UserLayout } from "@/components/layouts/Layout/UserLayout";
 import { GetServerSideProps } from "next";
 import { RoomDetail } from "@/feature/room/page/RoomDetail";
-import { MansionRoomWithRentalHouse } from "@/feature/room/type.ts/room";
+import { MansionRoomWithRentalHouse } from "@/feature/room/type/room";
 
 
 export const getServerSideProps: GetServerSideProps = async () => {

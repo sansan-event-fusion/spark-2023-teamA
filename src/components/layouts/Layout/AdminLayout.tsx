@@ -1,18 +1,17 @@
 import { ReactNode } from "react"
 import { AdminSidebar } from "../SideBar/AdminSideBar"
+import { useAuth } from "@/hooks/useAuth"
 
 type Props = {
   children: ReactNode
 }
 
 export const AdminLayout = ({ children }: Props) => {
-
-  // MVP: AdminのRecoilStateが空の時はSignInに飛ぶ。
-
+  useAuth();
   return (
     <div className="flex flex-row">
       <AdminSidebar />
-      <main className="flex w-auto">{children}</main>
+      <main className="flex flex-grow w-auto">{children}</main>
     </div>
   )
 }
