@@ -7,8 +7,12 @@ export type MansionRoom = BaseRoom;
 // export type ApartmentRoom = BaseRoom;
 // export type OtherRoom = BaseRoom;
 
+export type MansionRoomsWithRentalHouse = {
+  mansionRoom: MansionRoom[]; 
+  rentalHouse: RentalHouse; 
+};
 export type MansionRoomWithRentalHouse = {
-  room: MansionRoom; 
+  mansionRoom: MansionRoom; 
   rentalHouse: RentalHouse; 
 };
 
@@ -21,7 +25,7 @@ export type BaseRoom = {
   thanksMoney: number;  // 礼金
   securityDeposit: number; // 敷金
   floorDeposit: number; // 階層
-  availableDates: string[];
+  availableDates?: string[];
   rent: number; // 賃金
   contractDuration: string; // 契約期間
   stayFee: number; // 宿泊費

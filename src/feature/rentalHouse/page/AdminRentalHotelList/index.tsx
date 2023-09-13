@@ -1,4 +1,4 @@
-import { BelongToOwnerRentalHouseList } from "../../components/BelongToOwnerRentalHouseList"
+import { BelongToOwnerRentalHouseList } from "../../components/AdminBelongToOwnerRentalHouseList"
 
 export const AdminRentalHouseList = () => {
   return (

@@ -23,7 +23,7 @@ export const PlainSelectInput = ({
   registerValue,
   error,
   defaultValue,
-  labelFont = "text-xs sm:text-sm",
+  labelFont = "text-xs sm:text-base",
   inputFont = "text-sm",
   children, // childrenプロパティを受け取る
 }: PlainInputProps): JSX.Element => {

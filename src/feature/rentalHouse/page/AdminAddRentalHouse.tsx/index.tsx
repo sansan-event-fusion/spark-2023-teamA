@@ -7,13 +7,12 @@ import { useForm } from "react-hook-form";
 import { CreateRentalHouseSchema } from "../../type/schema";
 
 export const AddRentalHouse = () => {
-  const { handleSubmit, register, formState: {errors, isSubmitting}, control} = useForm({
+  const { handleSubmit, register, formState: {errors, isSubmitting}, control, watch} = useForm({
     resolver: zodResolver(CreateRentalHouseSchema)
   });
-
   const onsubmit = (data: any) => {
     //　ロジックの実装
-    console.log(data)
+    console.log('確認',data)
   } 
 
   return (
@@ -77,8 +76,10 @@ export const AddRentalHouse = () => {
           <FileField
             labelText="物件写真の選択"
             control={control}
-            error='error'
+            error={errors.rentalHousePhotos?.message as string}
             registerValue="rentalHousePhotos"
+            register={register}
+            watch={watch}
           />
           <div className="flex justify-center">
             <PlainButton

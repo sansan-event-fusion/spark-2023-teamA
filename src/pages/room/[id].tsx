@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   // TODO:  apiができたらデータフェッチする。
   
   const mansionRoomWithRentalHouse: MansionRoomWithRentalHouse = {
-    room: {
+    mansionRoom: {
       id: 1,
       name: '1DK Apartment',
       layout: '1DK',
@@ -35,6 +35,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       nearestStation: '渋谷駅',
       maxFloorNumber: '10',
       buildingAge: 5,
+      structure_type: 1,
       rentalHousePhoto: {
         id: '1',
         image: '/exapmleHouse.jpg',

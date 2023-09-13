@@ -25,6 +25,7 @@ export const RentalHouseList = ({ rentalHouses }: Props): JSX.Element => {
         filteredHouses.map((house) => {
           return (
             <RentalHouseCard 
+              id={house.id}
               key={house.id} 
               houseName={house.name}
               img={house.rentalHousePhoto.image}
