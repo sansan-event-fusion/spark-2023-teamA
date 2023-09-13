@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const AdminLayout = ({ children }: Props) => {
-  useAuth();
+  // useAuth();
   return (
     <div className="flex flex-row">
       <AdminSidebar />
