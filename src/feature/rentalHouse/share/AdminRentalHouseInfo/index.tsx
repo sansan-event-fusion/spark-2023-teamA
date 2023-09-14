@@ -1,18 +1,26 @@
 import Image from "next/image";
-import { RentalHouse, Structure } from "../../type/rentalHouse";
+import { Structure } from "../../type/rentalHouse";
 
 type Props = {
-  rentalHouse: RentalHouse
+  id: number,
+  // rental_house_photos: Photo, 
+  name: string,
+  address: string,
+  nearest_station: string,
+  structure_type_id: number,
+  max_floor_number: number,
+  building_age: number,
 }
 
 export const AdminRentalHouseInfo = ({
-  rentalHouse: {rentalHousePhoto, name, address, nearestStation, structure_type, maxFloorNumber, buildingAge, }
+  id, name, address, nearest_station, structure_type_id, max_floor_number,building_age
 }: Props) => (
   <>
     <div className="w-sm md:w-md lg:w-lg h-[320px] lg:h-[400px] relative">
       <Image
         className="rounded-2xl"
-        src={rentalHousePhoto.image} 
+        // src={rental_house_photos[0].image}
+        src={'/exapmleHouse.jpg'} 
         alt="家の写真です。"
         objectFit="cover"
         layout="fill"
@@ -27,20 +35,20 @@ export const AdminRentalHouseInfo = ({
         </div>
         <div>
           <p className="text-xs">最寄駅</p>
-          <p>&nbsp;{nearestStation}</p>
+          <p>&nbsp;{nearest_station}</p>
         </div>
         <div className="flex justify-between">
           <div className="w-1/3">
             <p className="text-xs">構造</p>
-            <p>{Structure[structure_type]}</p>
+            <p>{Structure[structure_type_id]}</p>
           </div>
           <div className="w-1/3">
             <p className="text-xs">階数</p>
-            <p>&nbsp;{maxFloorNumber}建</p>
+            <p>&nbsp;{max_floor_number}建</p>
           </div>
           <div className="w-1/3">
             <p className="text-xs">築年数</p>
-            <p>&nbsp;{buildingAge}年</p>
+            <p>&nbsp;{building_age}年</p>
           </div>
         </div>
       </div>

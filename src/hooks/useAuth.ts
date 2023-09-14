@@ -1,18 +1,27 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useCertainOwner } from "./useCertainOwner";
 import { Routing } from "./routing";
-import { useRecoilValue } from "recoil";
+import { parseCookies, setCookie, destroyCookie } from 'nookies';
+import { axiosInstance, setAuthCookie } from "@/lib/axios";
+import { useLoading } from "./useLoading";
 
 // TODO: 最終日までに認証をしっかり書く
 export const useAuth = () => {
-  const router = useRouter();
-  const { owner } = useCertainOwner();
+  const router = useRouter(); 
+  const cookies = parseCookies();
+  const { showLoading, hideLoading } = useLoading();
 
   useEffect(() => { 
-    if (!owner) router.push(Routing.ownerSignIn.buildRoute().path);
-    return
+    // cookieがない時は認証に飛ばす
+    showLoading();
+    if (Object.keys(cookies).length === 0) router.push(Routing.ownerSignIn.buildRoute().path);
+    //headerに情報を登録できなくても認証に飛ばす。
+    setAuthCookie(cookies.ownerId);
+    if (!axiosInstance.defaults.headers.common["Authorization"]) router.push(Routing.ownerSignIn.buildRoute().path); 
+    hideLoading();
   }, []);
+
+  return { cookies }
 
 };
 

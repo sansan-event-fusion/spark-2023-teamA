@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run dev:core & npm run dev:proxy",
+    "dev:core": "next dev -p 3002",
+    "dev:proxy": "local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3001 --target 3002",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,6 +13,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@hookform/resolvers": "^3.3.1",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
@@ -19,7 +22,9 @@
     "axios": "^1.5.0",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
+    "mkcert": "^3.0.0",
     "next": "^13.4.19",
+    "nookies": "^2.5.2",
     "postcss": "8.4.29",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -41,6 +46,7 @@
     "@storybook/react": "^7.4.0",
     "@storybook/testing-library": "^0.2.0",
     "eslint-plugin-storybook": "^0.6.13",
+    "local-ssl-proxy": "^2.0.5",
     "storybook": "^7.4.0"
   }
 }

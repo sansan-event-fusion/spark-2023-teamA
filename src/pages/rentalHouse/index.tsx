@@ -3,27 +3,25 @@ import { UserLayout } from "@/components/layouts/Layout/UserLayout";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { ISR_REVALIDATE } from "@/constants/constants";
 import { SearchableRentalHouseList } from "@/feature/rentalHouse/page";
-import { BelongToOwnerRentalHouses } from "@/mock";
+import { rentalHoseRepository } from "@/feature/rentalHouse/modules/rentalHouse.repository";
 
 
 export const getStaticProps: GetStaticProps = async () => {
   // TODO:  apiができたらデータフェッチする。
-  // const fetchedRentalHouses
-
-  const rentalHouses = BelongToOwnerRentalHouses
+  const fetchedRentalHouses = await rentalHoseRepository.getAll();
 
   return {
-    props: { rentalHouses },
+    props: { fetchedRentalHouses },
     revalidate: ISR_REVALIDATE,
   };
 };
 
 type Props = {
-  rentalHouses: InferGetStaticPropsType<typeof getStaticProps>;
+  fetchedRentalHouses: InferGetStaticPropsType<typeof getStaticProps>;
 };
 
-const RentalHousesPage = ({ rentalHouses }: Props): ReactElement => (
-  <SearchableRentalHouseList rentalHouses={rentalHouses} />
+const RentalHousesPage = ({ fetchedRentalHouses }: Props): ReactElement => (
+  <SearchableRentalHouseList rentalHouses={fetchedRentalHouses} />
 );
 
 RentalHousesPage.getLayout = (page: ReactElement) => <UserLayout>{page}</UserLayout>;

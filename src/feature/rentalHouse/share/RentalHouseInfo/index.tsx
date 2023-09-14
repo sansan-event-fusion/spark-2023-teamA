@@ -6,12 +6,12 @@ type Props = {
 }
 
 export const RentalHouseInfo = ({
-  rentalHouse: { name, address, nearestStation, maxFloorNumber, buildingAge, rentalHousePhoto }
+  rentalHouse: { name, address, nearest_station, max_floor_number, building_age, rental_house_photos }
 }: Props): JSX.Element => (
   <div className="flex flex-col space-y-8">
     <div className="w-full h-64 relative">
       <Image
-        src={rentalHousePhoto.image}
+        src={rental_house_photos[0].image!}
         objectFit="cover"
         layout="fill"
         alt="賃貸の写真"
@@ -28,15 +28,15 @@ export const RentalHouseInfo = ({
         </div>
         <div>
           <p className="text-xs">最寄駅</p>
-          <p>&nbsp;{nearestStation}</p>
+          <p>&nbsp;{nearest_station}</p>
         </div>
         <div>
           <p className="text-xs">階数</p>
-          <p>&nbsp;{maxFloorNumber}建</p>
+          <p>&nbsp;{max_floor_number}建</p>
         </div>
         <div>
           <p className="text-xs">築年数</p>
-          <p>&nbsp;{buildingAge}年</p>
+          <p>&nbsp;{building_age}年</p>
         </div>
       </div>
     </div>
