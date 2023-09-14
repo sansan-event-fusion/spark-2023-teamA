@@ -1,16 +1,16 @@
 import Image from "next/image"
-import { BaseRoom } from "../../type/room"
+import { Mansion } from "@/feature/rentalHouse/type/rentalHouse"
 
 type Props = {
-  mansionRooms: BaseRoom[] 
+  mansionRooms: Mansion | undefined
 }
 
 export const AdminRoomListBelongToRentalHose = ({ mansionRooms }: Props) => (
   <div className="w-full px-4 grid gap-x-4 gap-y-8  sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 ">
-    { mansionRooms?.length === 0 ? (
+    { !mansionRooms?.mansion_room?.length ? (
       <p className="text-center font-bold text-red-400">まだ作成していません。</p>
     ) : (
-      mansionRooms?.map(({ id, name, image, stayFee }) => {
+      mansionRooms?.mansion_room?.map(({ id, name, image, stayFee }) => {
         return (
           // Linkにしてroom詳細に飛べるようにする
           <section key={id} className="flex items-center space-x-4 bg-gray-100 rounded-xl">    
