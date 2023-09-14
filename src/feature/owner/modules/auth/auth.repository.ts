@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/lib/axios";
 import { AuthRepository } from "../../type/auth.repository";
-import { FAIL_TO_SIGNUP, SUCCESS_TO_SIGNIN, SUCCESS_TO_SIGNUP } from "@/constants/messages";
+import { FAIL_TO_SIGNIN, FAIL_TO_SIGNUP, SUCCESS_TO_SIGNIN, SUCCESS_TO_SIGNUP } from "@/constants/messages";
 
 export const authRepository: AuthRepository = {
   async signUp(createData) {
@@ -33,7 +33,7 @@ export const authRepository: AuthRepository = {
       const isTypeSafeError = error instanceof Error;
       return {
         style: 'failed',
-        message: `${FAIL_TO_SIGNUP}\n${
+        message: `${FAIL_TO_SIGNIN}\n${
           isTypeSafeError ? error.message : ""
         }`,
       };

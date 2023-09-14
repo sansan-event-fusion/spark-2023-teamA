@@ -9,6 +9,9 @@ import { authRepository } from "../../modules/auth/auth.repository";
 import { ToastResult } from "@/type/toast";
 import { Routing } from "@/hooks/routing";
 import { useRouter } from "next/router";
+import { parseCookies, setCookie, destroyCookie } from 'nookies'
+import { setAuthCookie } from "@/lib/axios";
+
 
 export const SignInForm = (): JSX.Element => {
   const router = useRouter();
@@ -17,16 +20,26 @@ export const SignInForm = (): JSX.Element => {
   });
 
   const { showToast, hideToast } = useToast();
-  const { setOwner, owner } = useCertainOwner();
+  const { setOwner } = useCertainOwner();
 
   const onSubmit = (createData: any): void => {
     authRepository.signIn(createData)
       .then(({ data, style, message }: ToastResult) => {
-
         showToast({ message, style });
         setTimeout(() => {
           hideToast();
           if (style === 'success') {
+            //TODO: 共通化する
+            //cookieをセットする
+            setCookie(null, 'ownerId', data.id, {
+              // 30日間有効なCookie
+              maxAge: 30 * 24 * 60 * 60, 
+              path: '/admin', 
+            });
+            const cookies = parseCookies();
+            //headerに認証情報を追加する
+            setAuthCookie(data.id)
+
             setOwner(data);
             return router.push(Routing.adminRentalHouses.buildRoute().path)
           }

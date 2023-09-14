@@ -9,6 +9,8 @@ import { useCertainOwner } from "@/hooks/useCertainOwner";
 import { signUpInputSchema } from "../../type/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Routing } from "@/hooks/routing";
+import { parseCookies, setCookie } from "nookies";
+import { setAuthCookie } from "@/lib/axios";
 
 export const SignUpForm = () => {
   const router = useRouter();
@@ -22,11 +24,21 @@ export const SignUpForm = () => {
   const onSubmit = (createData: any): void => {
     authRepository.signUp(createData)
       .then(({ data, style, message }: ToastResult) => {
-        console.log(data, style, message)
         showToast({ message, style });
         setTimeout(() => {
           hideToast();
           if (style === 'success') {
+
+            //cookieをセットする
+            setCookie(null, 'ownerId', data.id, {
+              // 30日間有効なCookie
+              maxAge: 30 * 24 * 60 * 60, 
+              path: '/admin', 
+            });
+            const cookies = parseCookies();
+            //headerに認証情報を追加する
+            setAuthCookie(data.id)
+
             setOwner(data);
             return router.push(Routing.adminRentalHouses.buildRoute().path)
           }

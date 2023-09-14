@@ -39,34 +39,34 @@ export const AddRentalHouse = () => {
           <PlainInput
             label="最寄駅"
             register={register}
-            registerValue="nearestStation"
+            registerValue="nearest_station"
             inputType="text"
             placeholder="最寄駅をご記入ください"
-            error={errors.nearestStation?.message as string}
+            error={errors.nearest_station?.message as string}
           />
           <div className="flex ">
             <PlainInput
               label="何階建"
               register={register}
-              registerValue="maxFloorNumber"
+              registerValue="max_floor_number"
               inputType="number"
               placeholder="何階建の建物ですか？"
-              error={errors.maxFloorNumber?.message as string}
+              error={errors.max_floor_number?.message as string}
             />
             <PlainInput
               label="築年数"
               register={register}
-              registerValue="buildingAge"
+              registerValue="building_age"
               inputType="number"
               placeholder="築年数をご記入ください"
-              error={errors.buildingAge?.message as string}
+              error={errors.building_age?.message as string}
             />
           </div>
           <PlainSelectInput 
             labelText="建築構造"
-            registerValue="structure_type"
+            registerValue="structure_type_id"
             register={register}
-            error={errors.nearestStation?.message as string}
+            error={errors.nearest_station?.message as string}
           >
             <option value="1">木造</option>
             <option value="2">S造・鉄骨造</option>
@@ -76,8 +76,8 @@ export const AddRentalHouse = () => {
           <FileField
             labelText="物件写真の選択"
             control={control}
-            error={errors.rentalHousePhotos?.message as string}
-            registerValue="rentalHousePhotos"
+            error={errors.rental_house_photos?.message as string}
+            registerValue="rental_house_photos"
             register={register}
             watch={watch}
           />

@@ -1,3 +1,5 @@
+import { Loading } from '@/components/organisms/Loading'
+import { ToastModal } from '@/components/organisms/ToastModal'
 import '@/styles/globals.css'
 import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
@@ -15,6 +17,8 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
   return (
     <RecoilRoot>
+      <ToastModal />
+      <Loading />
       {
         getLayout(
           <Component {...pageProps} />
