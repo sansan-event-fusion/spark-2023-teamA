@@ -10,7 +10,7 @@ export const RoomListBelongToOwnerHose = () => {
   const router = useRouter();
   const { houseId } = router.query;
   const { specificRentalHouseAndBelongingToRooms } = useSpecificRentalHouseAndBelongingToRooms(houseId as string);
-
+  console.log('testtest', specificRentalHouseAndBelongingToRooms)
   // const rentalHousesWithRoom = fetchedRentalHousesWithRoom;
   if(!specificRentalHouseAndBelongingToRooms) return  <Loading />
   return (
@@ -30,7 +30,7 @@ export const RoomListBelongToOwnerHose = () => {
         {/* TODO: createUI作る時にPath指定 */}
         <PlainLink
           innerText="ルームを作成する"
-          path={Routing.adminAddRoomBelongToHouse.buildRoute({ houseId: specificRentalHouseAndBelongingToRooms?.id }).path}
+          path={Routing.adminAddRoomBelongToHouse.buildRoute({ houseId: specificRentalHouseAndBelongingToRooms?.mansion?.id! }).path}
         />
       </div>
 

@@ -9,7 +9,7 @@ export type RentalHouse = {
   nearest_station: string;
   max_floor_number: number;
   building_age: number;
-  rental_house_photos: Photo[];
+  rental_house_photos: string[];
   structure_type_id: number;
   structure_type?: any;
   // structure_type: StructureType;

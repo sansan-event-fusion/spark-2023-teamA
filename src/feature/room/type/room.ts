@@ -22,14 +22,16 @@ export type BaseRoom = {
   id: number;
   name: string; //ここが何に当たるか？
   layout: Layout;
-  thanksMoney: number;  // 礼金
-  securityDeposit: number; // 敷金
-  floorDeposit: number; // 階層
-  availableDates?: string[];
+  thanks_money: number;  // 礼金
+  security_deposit: number; // 敷金
+  floor_number: number; // 階層
+  stay_fee: number;
   rent: number; // 賃金
-  contractDuration: string; // 契約期間
-  stayFee: number; // 宿泊費
-  image?: Photo;
+  maintenance_fee: number;
+  contract_duration: string; // 契約期間
+  mansion_room_photos: Photo[];
+  availableDates?: string[];
+  reserve_url: string
 }
 
 export type Layout = 

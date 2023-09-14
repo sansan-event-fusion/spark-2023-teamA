@@ -14,12 +14,13 @@ export const BelongToOwnerRentalHouseList = (): JSX.Element => {
           <p className="text-center font-bold text-red-400">まだ作成していません。</p>
         ) : (
           myRentalHouses.map((house) => {
+            console.log('確認',house.rental_house_photos[0])
             return (
               <RentalHouseCard
                 id={house.id}
                 key={house.id}
                 houseName={house.name}
-                img={house.rental_house_photos[0].image}
+                img={house.rental_house_photos[0]}
                 address={house.address}
               />
             )

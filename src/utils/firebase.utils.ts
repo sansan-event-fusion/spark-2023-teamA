@@ -14,7 +14,7 @@ type DestinationPath = 'rentalHousePhotos' | 'roomPhotos';
 export const uploadFirebaseStorageAndReturnDownloadURLs = async(
   { files, destinationPath }: { files: any, destinationPath: DestinationPath }
 ): Promise<string[]> => {
-
+  console.log('確',files)
   try {
     //fileで送られた値をfirebase-storageに保存してurlに変更
     const downloadURLs = await Promise.all(
@@ -26,9 +26,10 @@ export const uploadFirebaseStorageAndReturnDownloadURLs = async(
         return getDownloadURL(snapshot.ref);
       })
     );
-    
+
     return downloadURLs 
   } catch (error: unknown) {
     throw error
   }
 }
+

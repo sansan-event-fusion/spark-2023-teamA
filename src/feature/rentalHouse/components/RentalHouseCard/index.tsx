@@ -18,14 +18,14 @@ export const RentalHouseCard = ({ id, houseName, img, address, rooms }: Props): 
   const cookies = parseCookies();
   //1番安い家賃を取得する。
   const minRent = rooms && Math.min(...rooms.map(room => room.rent));
-
+  console.log('image', img)
   return (
     <section className="flex flex-col items-center space-y-2">      
       <div className="w-[320px] h-[320px] relative">
         <Image
           className="rounded-2xl"
-          // src={img}
-          src={'/exapmleHouse.jpg'} 
+          src={img!}
+          // src={'/exapmleHouse.jpg'} 
           alt="家の写真です。"
           objectFit="cover"
           layout="fill"
