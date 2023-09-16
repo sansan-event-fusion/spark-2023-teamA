@@ -21,20 +21,18 @@ const room: BaseRoom[] = [{
   id: 1,
   name: '1DK Apartment',
   layout: '1DK',
-  thanksMoney: 10000,
-  securityDeposit: 50000,
-  floorDeposit: 5,
-  availableDates: [
-    new Date('2023-09-10').toISOString(),
-    new Date('2023-09-20').toISOString(),
-  ],
+  thanks_money: 10000,
+  security_deposit: 50000,
+  floor_number: 5,
   rent: 80000,
-  contractDuration: '1年',
-  stayFee: 15000,
-  image: {
-    id: '4',
+  contract_duration: '1年',
+  stay_fee: 15000,
+  mansion_room_photos: [{
+    id: '3',
     image: '/exapmleHouse.jpg',
-  },
+  }],
+  maintenance_fee: 500,
+  reserve_url: 'http'
 }]
 
 //対応するroom無しの場合

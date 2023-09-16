@@ -22,9 +22,8 @@ export const AdminAddRentalRoom = () => {
   const { showToast, hideToast } = useToast();
 
   const onSubmit = async(data: any) => {
-    console.log('jujun', data)
     const urls = await uploadFirebaseStorageAndReturnDownloadURLs({files: data.mansion_room_photos, destinationPath: 'roomPhotos'});
-    console.log('ff',urls)
+
     try {
       showLoading();
       await roomRepository.create(query.houseId as unknown as number, data.name, data.layout, data.thanks_money, data.security_deposit, data.floor_number, data.stay_fee, data.rent, data.maintenance_fee, data.contract_duration, urls, data.reserve_url)

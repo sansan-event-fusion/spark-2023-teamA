@@ -3,7 +3,7 @@ import { useOwnRentalHouses } from "../../hooks/useOwnRentalHouses";
 
 export const BelongToOwnerRentalHouseList = (): JSX.Element => {
   const { myRentalHouses } = useOwnRentalHouses(); 
-
+  
   return (
     <div className="flex flex-col  w-full min-h-screen h-full space-y-10">
       <div className="my-8 mx-6 font-semibold text-lg">
@@ -14,13 +14,12 @@ export const BelongToOwnerRentalHouseList = (): JSX.Element => {
           <p className="text-center font-bold text-red-400">まだ作成していません。</p>
         ) : (
           myRentalHouses.map((house) => {
-            console.log('確認',house.rental_house_photos[0])
             return (
               <RentalHouseCard
-                id={house.id}
                 key={house.id}
+                id={house.id}
                 houseName={house.name}
-                img={house.rental_house_photos[0]}
+                img={house.rental_house_photos[0]?.image}
                 address={house.address}
               />
             )

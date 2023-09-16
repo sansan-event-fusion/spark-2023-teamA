@@ -9,7 +9,7 @@ export const RentalHouseSearchBox = (): JSX.Element => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = ({houseName} :{houseName?: string}) => {
-    handleFiltered(houseName)
+    handleFiltered(houseName);
   }
 
   // paramsに条件を追加する関数

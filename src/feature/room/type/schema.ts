@@ -16,16 +16,3 @@ export const CreateRoomSchema = z.object({
   reserve_url: z.string().min(1, REQUIRE_FIELD),
 });
 export type CreateRoomInput = z.infer<typeof CreateRoomSchema>;
-
-      // const rental_house = {
-       //   name: name,
-        //   layout: layout,
-        //   thanks_money: thanks_money,
-        //   security_deposit: security_deposit,
-        //   floor_number: floor_number,
-        //   stay_fee: stay_fee,
-        //   rent: rent,
-      //   maintenance_fee: maintenance_fee,
-       //   contract_duration: contract_duration,
-      //   mansion_room_photos:
-    // }

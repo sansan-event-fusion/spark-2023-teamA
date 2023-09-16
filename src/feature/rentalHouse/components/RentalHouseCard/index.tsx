@@ -1,3 +1,4 @@
+import { Loading } from "@/components/organisms/Loading";
 import { OneRoomCard } from "@/feature/room/share/OneRoomCard";
 import { MansionRoom } from "@/feature/room/type/room";
 import { Routing } from "@/hooks/routing";
@@ -16,15 +17,17 @@ type Props = {
 
 export const RentalHouseCard = ({ id, houseName, img, address, rooms }: Props): JSX.Element => {
   const cookies = parseCookies();
+
   //1番安い家賃を取得する。
   const minRent = rooms && Math.min(...rooms.map(room => room.rent));
-  console.log('image', img)
+  
+  if (!img) return <Loading />
   return (
     <section className="flex flex-col items-center space-y-2">      
       <div className="w-[320px] h-[320px] relative">
         <Image
           className="rounded-2xl"
-          src={img!}
+          src={img}
           // src={'/exapmleHouse.jpg'} 
           alt="家の写真です。"
           objectFit="cover"
@@ -43,14 +46,19 @@ export const RentalHouseCard = ({ id, houseName, img, address, rooms }: Props): 
       <div className="flex flex-col w-[320px] items-center space-y-2">
         {
           rooms?.map((room) => (
-            <OneRoomCard key={room.id} room={room} />
+            <OneRoomCard key={room.id} room={room} rental_houseId={id} />
           ))
         }
       </div>
 
       {/* ownerはrentalHouseに紐ずくroom一覧に飛ぶ(Ownerでのみ表示) */}
       { Object.keys(cookies).length !== 0 && 
-        <Link href={Routing.adminRoomsBelongToHouse.buildRoute({ houseId: id }).path} className="bg-pink-color py-3 px-6 rounded-xl text-white">募集中のRoom一覧</Link>
+        <Link 
+          href={Routing.adminRoomsBelongToHouse.buildRoute({ houseId: id }).path} 
+          className="bg-pink-color py-3 px-6 rounded-xl text-white"
+        >
+          募集中のRoom一覧
+        </Link>
       }
     </section>
   );

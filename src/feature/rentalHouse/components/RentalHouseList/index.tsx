@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
 import { RentalHouse } from "../../type/rentalHouse"
 import { RentalHouseCard } from "../RentalHouseCard"
+import { Loading } from "@/components/organisms/Loading"
 
 
 export type Props = {
@@ -19,7 +20,7 @@ export const RentalHouseList = ({ rentalHouses }: Props): JSX.Element => {
       return rentalHouses
      }
   });
-
+  
   return (
     <div className="mt-8 flex flex-col gap-8">
       {
@@ -29,9 +30,9 @@ export const RentalHouseList = ({ rentalHouses }: Props): JSX.Element => {
               id={house.id}
               key={house.id} 
               houseName={house.name}
-              img={house.rental_house_photos[0].image}
+              img={house.rental_house_photos[0]?.image}
               address={house.address}
-              rooms={house.mansion?.mansion_room}
+              rooms={house.mansion?.mansion_rooms}
             />
           )
         })

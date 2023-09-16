@@ -5,7 +5,7 @@ type Props = {
   room: MansionRoom
 }
 export const RoomInfo = ({
-  room: { floorDeposit, layout, thanksMoney, securityDeposit, rent, contractDuration, stayFee, image }
+  room: { floor_number, layout, thanks_money, security_deposit, rent, contract_duration, mansion_room_photos, reserve_url }
 }: Props) => (
   <div className="flex flex-col mx-6"> 
     <h4 className="font-semibold text-lg">部屋情報</h4>
@@ -17,11 +17,11 @@ export const RoomInfo = ({
       <div className="flex justify-between">
         <div className="w-1/2">
           <p className="text-xs">敷金</p>
-          <p>&nbsp;¥{securityDeposit}</p>
+          <p>&nbsp;¥{security_deposit}</p>
         </div>
         <div className="w-1/2">
           <p className="text-xs">礼金</p>
-          <p>&nbsp;¥{thanksMoney}</p>
+          <p>&nbsp;¥{thanks_money}</p>
         </div>
       </div>
       <div className="flex justify-between">
@@ -31,15 +31,20 @@ export const RoomInfo = ({
         </div>
         <div className="w-1/2">
           <p className="text-xs">階層</p>
-          <p>&nbsp;{floorDeposit}階</p>
+          <p>&nbsp;{floor_number}階</p>
         </div>
       </div>
+      <div>
+        <p className="text-xs">契約期間</p>
+        <p>&nbsp;{contract_duration}階</p>
+      </div>
     </div>
+
 
     <div className="w-full h-60 relative">
       <Image
         className="rounded-xl"
-        src={image?.image!}
+        src={mansion_room_photos[0]?.image!}
         objectFit="cover"
         layout="fill"
         alt="賃貸の写真"
