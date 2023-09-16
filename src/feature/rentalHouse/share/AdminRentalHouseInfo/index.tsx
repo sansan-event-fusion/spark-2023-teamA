@@ -3,24 +3,23 @@ import { Structure } from "../../type/rentalHouse";
 
 type Props = {
   id: number,
-  // rental_house_photos: Photo, 
   name: string,
   address: string,
   nearest_station: string,
-  structure_type_id: number,
   max_floor_number: number,
   building_age: number,
+  rental_house_photos: string, 
+  structure_type_id: number,
 }
 
 export const AdminRentalHouseInfo = ({
-  id, name, address, nearest_station, structure_type_id, max_floor_number,building_age
+  id, name, address, nearest_station, structure_type_id, max_floor_number,building_age, rental_house_photos
 }: Props) => (
   <>
     <div className="w-sm md:w-md lg:w-lg h-[320px] lg:h-[400px] relative">
       <Image
         className="rounded-2xl"
-        // src={rental_house_photos[0].image}
-        src={'/exapmleHouse.jpg'} 
+        src={rental_house_photos}
         alt="家の写真です。"
         objectFit="cover"
         layout="fill"

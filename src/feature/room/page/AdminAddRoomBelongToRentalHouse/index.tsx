@@ -5,21 +5,46 @@ import { FileField } from "@/components/organisms/FileField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { CreateRoomSchema } from "../../type/schema";
+import { uploadFirebaseStorageAndReturnDownloadURLs } from "@/utils/firebase.utils";
+import { roomRepository } from "../../modules/room.repository";
+import { useLoading } from "@/hooks/useLoading";
+import { useToast } from "@/hooks/useToast";
+import { useRouter } from "next/router";
 
 export const AdminAddRentalRoom = () => {
+  const { query } = useRouter() ;
+
   const { handleSubmit, register, formState: {errors, isSubmitting}, control, watch} = useForm({
     resolver: zodResolver(CreateRoomSchema)
   });
-  const onsubmit = (data: any) => {
-    //　ロジックの実装
-    console.log('確認',data)
-  } 
+
+  const { showLoading, hideLoading } = useLoading();
+  const { showToast, hideToast } = useToast();
+
+  const onSubmit = async(data: any) => {
+    const urls = await uploadFirebaseStorageAndReturnDownloadURLs({files: data.mansion_room_photos, destinationPath: 'roomPhotos'});
+
+    try {
+      showLoading();
+      await roomRepository.create(query.houseId as unknown as number, data.name, data.layout, data.thanks_money, data.security_deposit, data.floor_number, data.stay_fee, data.rent, data.maintenance_fee, data.contract_duration, urls, data.reserve_url)
+      .then(({ style, message }) => {
+        showToast({ message, style });
+        setTimeout(() => {
+          hideToast();
+          // router.reload()
+        }, 1000)
+      })
+      hideLoading();
+    } catch (error) {
+      throw error
+    }
+  }
 
   return (
     <div className="flex flex-col w-full items-center  min-h-screen h-full space-y-10 bg-gray-50">
       <div className="flex flex-col w-full md:w-4/5 lg:w-2/3 xl:w-1/2 min-h-screen h-full items-center bg-white space-y-8 pb-16">
         <div className="mt-8 font-semibold text-center">ルームの登録</div>
-        <form action="" className="w-full sm:w-4/5 space-y-4" onSubmit={handleSubmit(onsubmit)}>
+        <form action="" className="w-full sm:w-4/5 space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <PlainInput
             label="部屋名(部屋番号)"
             register={register}
@@ -31,7 +56,7 @@ export const AdminAddRentalRoom = () => {
           <PlainInput
             label="宿泊費(キャンセル料)"
             register={register}
-            registerValue="stayFee"
+            registerValue="stay_fee"
             inputType="number"
             placeholder="料金をご記入ください"
             error={errors.stayFee?.message as string}
@@ -48,7 +73,7 @@ export const AdminAddRentalRoom = () => {
             <PlainInput
               label="礼金"
               register={register}
-              registerValue="thanksMoney"
+              registerValue="thanks_money"
               inputType="number"
               placeholder="礼金をご入力ください"
               error={errors.thanksMoney?.message as string}
@@ -56,7 +81,7 @@ export const AdminAddRentalRoom = () => {
             <PlainInput
               label="敷金"
               register={register}
-              registerValue="securityDeposit"
+              registerValue="security_deposit"
               inputType="number"
               placeholder="敷金をご記入ください"
               error={errors.securityDeposit?.message as string}
@@ -66,7 +91,7 @@ export const AdminAddRentalRoom = () => {
             <PlainInput
               label="契約期間"
               register={register}
-              registerValue="contractDuration"
+              registerValue="contract_duration"
               inputType="text"
               placeholder="契約期間をご入力ください"
               error={errors.contractDuration?.message as string}
@@ -74,7 +99,7 @@ export const AdminAddRentalRoom = () => {
             <PlainInput
               label="階層"
               register={register}
-              registerValue="floorDeposit"
+              registerValue="floor_number"
               inputType="number"
               placeholder="階数をご記入ください"
               error={errors.floorDeposit?.message as string}
@@ -102,11 +127,29 @@ export const AdminAddRentalRoom = () => {
             <option value="その他">その他</option>
           </PlainSelectInput>
 
+          <PlainInput
+            label="共益費"
+            register={register}
+            registerValue="maintenance_fee"
+            inputType="number"
+            placeholder="共益費をご入力ください"
+            error={errors.maintenance_fee?.message as string}
+          />
+
+          <PlainInput
+            label="GoogleForm"
+            register={register}
+            registerValue="reserve_url"
+            inputType="text"
+            placeholder="GoogleFormをご入力ください"
+            error={errors.reserve_url?.message as string}
+          />
+
           <FileField
             labelText="部屋写真の選択"
             control={control}
             error={errors.image?.message as string}
-            registerValue="image"
+            registerValue="mansion_room_photos"
             register={register}
             watch={watch}
           />

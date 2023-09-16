@@ -11,13 +11,12 @@ export const RoomListBelongToOwnerHose = () => {
   const { houseId } = router.query;
   const { specificRentalHouseAndBelongingToRooms } = useSpecificRentalHouseAndBelongingToRooms(houseId as string);
 
-  // const rentalHousesWithRoom = fetchedRentalHousesWithRoom;
   if(!specificRentalHouseAndBelongingToRooms) return  <Loading />
   return (
     <div className="flex flex-col items-center w-full min-h-screen h-full space-y-10 mb-8">
       <AdminRentalHouseInfo 
         id={specificRentalHouseAndBelongingToRooms?.id}
-        // rental_house_photos={specificRentalHouseAndBelongingToRooms?.rental_house_photos}
+        rental_house_photos={specificRentalHouseAndBelongingToRooms?.rental_house_photos[0].image!}
         name={specificRentalHouseAndBelongingToRooms?.name}
         address={specificRentalHouseAndBelongingToRooms?.address}
         nearest_station={specificRentalHouseAndBelongingToRooms?.nearest_station}
@@ -27,10 +26,9 @@ export const RoomListBelongToOwnerHose = () => {
       />
 
       <div className="sm: w-1/2 md:w-1/3 lg:w-1/4 ">
-        {/* TODO: createUI作る時にPath指定 */}
         <PlainLink
           innerText="ルームを作成する"
-          path={Routing.adminAddRoomBelongToHouse.buildRoute({ houseId: specificRentalHouseAndBelongingToRooms?.id }).path}
+          path={Routing.adminAddRoomBelongToHouse.buildRoute({ houseId: specificRentalHouseAndBelongingToRooms?.mansion?.id! }).path}
         />
       </div>
 

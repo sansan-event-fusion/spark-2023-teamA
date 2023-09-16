@@ -4,13 +4,15 @@ import * as z from "zod";
 //SignUpのschema
 export const CreateRoomSchema = z.object({
   name: z.string().min(1, REQUIRE_FIELD),
-  stayFee: z.coerce.number().min(1, REQUIRE_FIELD),
+  stay_fee: z.coerce.number().min(1, REQUIRE_FIELD),
   rent: z.coerce.number().min(1, REQUIRE_FIELD),
-  thanksMoney: z.coerce.number().min(1, REQUIRE_FIELD),
-  securityDeposit: z.coerce.number().min(1, REQUIRE_FIELD),
-  contractDuration: z.string().min(1, REQUIRE_FIELD),
-  floorDeposit: z.string().min(1, REQUIRE_FIELD),
+  thanks_money: z.coerce.number().min(1, REQUIRE_FIELD),
+  security_deposit: z.coerce.number().min(1, REQUIRE_FIELD),
+  contract_duration: z.string().min(1, REQUIRE_FIELD),
+  floor_number: z.string().min(1, REQUIRE_FIELD),
   layout: z.string().min(1, REQUIRE_FIELD),
-  rentalHousePhotos: z.unknown(),
+  maintenance_fee: z.string().min(1, REQUIRE_FIELD),
+  mansion_room_photos: z.unknown(),
+  reserve_url: z.string().min(1, REQUIRE_FIELD),
 });
 export type CreateRoomInput = z.infer<typeof CreateRoomSchema>;

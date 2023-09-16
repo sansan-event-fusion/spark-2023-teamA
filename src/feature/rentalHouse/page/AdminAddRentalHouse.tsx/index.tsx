@@ -5,21 +5,45 @@ import { FileField } from "@/components/organisms/FileField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { CreateRentalHouseSchema } from "../../type/schema";
+import { uploadFirebaseStorageAndReturnDownloadURLs } from "@/utils/firebase.utils";
+import { axiosInstance } from "@/lib/axios";
+import { rentalHoseRepository } from "../../modules/rentalHouse.repository";
+import { useLoading } from "@/hooks/useLoading";
+import { useToast } from "@/hooks/useToast";
+import { useRouter } from "next/router";
 
 export const AddRentalHouse = () => {
   const { handleSubmit, register, formState: {errors, isSubmitting}, control, watch} = useForm({
     resolver: zodResolver(CreateRentalHouseSchema)
   });
-  const onsubmit = (data: any) => {
-    //　ロジックの実装
-    console.log('確認',data)
+  const router = useRouter();
+
+  const { showLoading, hideLoading } = useLoading();
+  const { showToast, hideToast } = useToast();
+
+  const onSubmit = async(data: any) => {
+    const urls = await uploadFirebaseStorageAndReturnDownloadURLs({files: data.rental_house_photos, destinationPath: 'rentalHousePhotos'});
+    try {
+      showLoading();
+      await rentalHoseRepository.create(data.name, data.address, data.nearest_station, data.max_floor_number, data.building_age, data.structure_type_id, urls)
+      .then(({ style, message }) => {
+        showToast({ message, style });
+        setTimeout(() => {
+          hideToast();
+          // router.reload()
+        }, 1000)
+      })
+      hideLoading();
+    } catch (error) {
+      throw error
+    }
   } 
 
   return (
     <div className="flex flex-col w-full items-center  min-h-screen h-full space-y-10 bg-gray-50">
       <div className="flex flex-col w-full sm:w-1/2 min-h-screen h-full items-center bg-white space-y-8 pb-16">
         <div className="mt-8 font-semibold text-center">物件の登録</div>
-        <form action="" className="w-full sm:w-4/5 space-y-4" onSubmit={handleSubmit(onsubmit)}>
+        <form action="" className="w-full sm:w-4/5 space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <PlainInput
             label="マンション名"
             register={register}

@@ -5,8 +5,10 @@ import { rentalHoseRepository } from "../modules/rentalHouse.repository";
 import { axiosInstance } from "@/lib/axios";
 
 export const useOwnRentalHouses = () => {
+
   const { showLoading, hideLoading } = useLoading();
   const [ myRentalHouses, setMyRentalHouses ] = useState<RentalHouse[]>([]);
+  
   useEffect(() => {
     (async () => {
       showLoading();
